@@ -1,0 +1,44 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightblue;
+    width: 100%; /* This will make the navbar fill the width of the screen */
+    height: 10vh; /* This will make the navbar 10% of the height of the view */
+    padding: 1em; /* This adds some space around the content */
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+}
+
+.navbar-title {
+    font-size: 4em;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    outline: black;
+    line-height: 1;
+}
+
+.navbar-title span {
+    font-style: italic;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1em;
+    list-style-type: none;
+}
+
+.nav-buttons a {
+    text-decoration: none;
+    color: white;
+    background-color: blue;
+    padding: 1em 2em; /* button size */
+    border-radius: 0.5em;
+    font-size: 1.2em;
+}
