@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Route, Link, Routes, useNavigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import './FindRecipe.css';
 
@@ -55,65 +55,6 @@ const IngredientInput = () => {
     );
 };
 
-// Recipe List Component
-const RecipeList = () => {
-    const { ingredients } = useContext(IngredientsContext);    
-    const [recipes, setRecipes] = useState([]);
-
-    useEffect(() => {
-        // Fetch the list of recipes from the server here
-        // setRecipes(fetchedRecipes);
-        fetch('/findRecipes', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                ingredients: ingredients,
-            }),
-        })
-        .then(response => response.json())
-        .then(data => setRecipes(data))
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    }, [ingredients]);
-
-    return (
-        <div>
-            <Navbar />
-            <h1>Recipes</h1>
-            {recipes.map((recipe) => (
-                <Link key={recipe.id} to={`/recipe/${recipe.id}`}>
-                    {recipe.name}
-                </Link>
-            ))}
-            <Link to="/">Back</Link>
-        </div>
-    );
-};
-
-
-// Recipe Details Component
-const RecipeDetails = ({ match }) => {
-    const [recipe, setRecipe] = useState(null);
-
-    useEffect(() => {
-        // Fetch the recipe details from the server here
-        // setRecipe(fetchedRecipe);
-    }, [match.params.id]);
-
-    return recipe ? (
-        <div>
-            <Navbar />
-            {/* <h1>Recipe Details</h1> */}
-            <h1>{recipe.name}</h1>
-            {/* Display the recipe details here */}
-            <Link to="/recipes">Back</Link>
-        </div>
-    ) : null;
-};
-
 // Main Component
 const FindRecipe = () => {
     console.log('FindRecipe is rendering'); // Add this line
@@ -126,8 +67,6 @@ const FindRecipe = () => {
         <IngredientsContext.Provider value={{ ingredients, setIngredients }}>
             <Routes>
                 <Route path="/" element={<IngredientInput />} />
-                {/* <Route path="/recipes" element={<RecipeList />} /> */}
-                <Route path="/recipe/:id" element={<RecipeDetails />} />
             </Routes>
         </IngredientsContext.Provider>
     );
