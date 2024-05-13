@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import { useLocation } from 'react-router-dom';
-import './EditOrDelete.css';
+import './EditRecipe.css';
 
 function EditRecipe() {
     const [recipeName, setRecipeName] = useState("");
